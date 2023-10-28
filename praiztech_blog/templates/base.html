@@ -1,0 +1,51 @@
+{% load static wagtailcore_tags wagtailuserbar base_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+            {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                | {{ settings.base.SiteSettings.title_suffix }}
+            {% endblock %}
+        </title>
+        {% if page.search_description %}
+        <meta name="description" content="{{ page.search_description }}" />
+        {% endif %}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {# Force all links in the live preview panel to be opened in a new tab #}
+        {% if request.in_preview_panel %}
+        <base target="_blank">
+        {% endif %}
+
+        {# Global stylesheets #}
+        <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/praiztech_blog.css' %}">
+
+        {% block extra_css %}
+        {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        <a href="#content">Skip to content</a>
+        {% wagtailuserbar %}
+        <header>
+            {% logo %}
+            {% main_nav %}
+        </header>
+        {% breadcrumb_nav %}
+        <main id="content">{% block content %}{% endblock %}</main>
+        <footer><small>&copy; 2023 PraizTech Blog. All Rights Reserved.</small></footer>
+        {# Global javascript #}
+        <script type="text/javascript" src="{% static 'js/praiztech_blog.js' %}"></script>
+
+        {% block extra_js %}
+        {# Override this in templates to add extra javascript #}
+        {% endblock %}
+    </body>
+</html>

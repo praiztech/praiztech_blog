@@ -1,0 +1,8 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="logo">
+    {% image site_logo.image original as logo_image %}
+    <a href="/">
+        <img src="{{ logo_image.url }}" alt="{{ site_logo.alt }}">
+    </a>
+</div>

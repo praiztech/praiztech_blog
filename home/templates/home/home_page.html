@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags wagtailcore_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% comment %}
+{% block extra_css %}
+This is how to add app-specific css
+<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
+{% endblock extra_css %}
+{% endcomment %}
+
+{% block content %}
+<div class="homepage">
+    <div class="container-fluid hero">
+        {% image page.image fill-1920x600 class="hero-image" alt="" %}
+        <div class="hero-gradient-mask"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-1 col-lg-5 home-hero">
+                    <h1>{{ page.heading }}</h1>
+                    <p class="lead">{{ page.intro }}</p>
+                    <a href="{% pageurl page.cta_link_page %}" class="hero-cta-link">
+                        {{ page.cta_text }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% comment %}
+This is how to include a page in the same app
+{% include 'home/welcome_page.html' %}
+{% endcomment %}

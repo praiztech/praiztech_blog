@@ -1,0 +1,7 @@
+{% load wagtailcore_tags %}
+
+{% if block.value.heading_size == 'h2' %}
+    <h2>{{ block.value.heading_text }}</h2>
+{% else %}
+    <h3>{{ block.value.heading_text }}</h3>
+{% endif %}

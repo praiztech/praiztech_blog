@@ -1,0 +1,11 @@
+{% load wagtailcore_tags %}
+
+<nav aria-label="Main">
+    <ul>
+        {% for menu_page in main_nav_items %}
+            <li>
+                <a href="{% pageurl menu_page %}" class="nav-link">{{ menu_page.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>

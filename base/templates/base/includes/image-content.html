@@ -1,0 +1,20 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% image block.value.image original as content_img %}
+
+{% if block.value.caption %}
+    <figure>
+        <img src="{{ content_img.url }}" alt="{{ block.value.alt }}">
+        <figcaption>{{ block.value.caption }}</figcaption>
+    </figure>
+{% else %}
+    <div>
+        <img src="{{ content_img.url }}" 
+        {% if block.value.alt %}
+        alt="{{ block.value.alt }}"
+        {% else %}
+        alt=""
+        {% endif %}
+        >
+    </div>
+{% endif %}
